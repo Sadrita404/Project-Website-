@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Raspberry Pi Robot | Roxy Assistant Guide</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      :root {
+        --primary-orange: #fb8c00;
+        --bg-body: #f7f7f7;
+        --bg-card: #ffffff;
+        --text-main: #333;
+        --code-bg: #1e1e1e;
+        --code-text: #d4d4d4;
+      }
+
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      header {
+        background: #fff;
+        padding: 40px 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .logo-area {
+        color: var(--primary-orange);
+        font-weight: 900;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+        margin: 10px 0;
+        font-weight: 800;
+      }
+      .author-tag {
+        color: #777;
+        font-size: 0.9rem;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .step-card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        padding: 40px;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border: 1px solid #eee;
+      }
+
+      .step-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-bottom: 2px solid var(--primary-orange);
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+      }
+
+      .step-number {
+        background: var(--primary-orange);
+        color: white;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1.8rem;
+      }
+
+      .img-wrapper {
+        width: 100%;
+        margin: 25px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #ddd;
+      }
+
+      .img-wrapper img {
+        width: 100%;
+        display: block;
+      }
+
+      .img-caption {
+        background: #f9f9f9;
+        padding: 10px;
+        font-size: 0.85rem;
+        color: #666;
+        text-align: center;
+        border-top: 1px solid #ddd;
+      }
+
+      .supplies-list {
+        background: #fff8f1;
+        padding: 20px 30px;
+        border-radius: 8px;
+        border-left: 5px solid var(--primary-orange);
+      }
+
+      .code-header {
+        background: #333;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px 8px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+        font-family: monospace;
+        margin-top: 20px;
+      }
+
+      .copy-btn {
+        background: var(--primary-orange);
+        border: none;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.2s;
+      }
+
+      .copy-btn:hover {
+        background: #e67e00;
+      }
+
+      pre {
+        background: var(--code-bg);
+        color: var(--code-text);
+        padding: 20px;
+        border-radius: 0 0 8px 8px;
+        overflow-x: auto;
+        margin: 0 0 25px 0;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .alert {
+        background: #e3f2fd;
+        border-left: 5px solid #2196f3;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+
+      footer {
+        background: #fff;
+        padding: 60px 20px;
+        text-align: center;
+        border-top: 1px solid #eee;
+      }
+
+      .social-links a {
+        color: #555;
+        font-size: 1.8rem;
+        margin: 0 15px;
+        transition: 0.3s;
+      }
+
+      .social-links a:hover {
+        color: var(--primary-orange);
+      }
+
+      .btn-join {
+        display: inline-block;
+        background: #e11d48;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 25px;
+      }
+
+      @media (max-width: 600px) {
+        .step-card {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo-area">Project</div>
+      <h1>How to Make an AI Raspberry Pi Robot</h1>
+      <div class="author-tag">By Sadrita Neogi | Voice Assistant: Roxy 1.0</div>
+    </header>
+
+    <div class="container">
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h2>Introduction & Supplies</h2>
+        </div>
+        <p>
+          For this project I decided to use an old robot I had that is powered
+          by a Raspberry Pi and lithium batteries. I chose a Raspberry Pi robot
+          because in the future I am going to make the program for the voice
+          assistant runnable purely from the raspberry pi. This robot has an
+          ultrasonic sensor and a camera module with implemented face
+          recognition using opencv.
+        </p>
+
+        <div class="supplies-list">
+          <strong>What You'll Need:</strong>
+          <ul>
+            <li>
+              Raspberry Pi or Arduino Robot (Servos, Wheels, Motors, etc.)
+            </li>
+            <li>Audio output/input device (USB Mic & Speaker)</li>
+            <li>Python 3.6 or above</li>
+            <li>An IDE (VS Code, PyCharm, etc.)</li>
+          </ul>
+        </div>
+
+        <div class="img-wrapper">
+          <img
+            src="https://lh3.googleusercontent.com/d/1qoNCsA1q8fl59H1EwWCp0g9OUyqdJry6"
+            alt="Freenove 4WD Robot" />
+          <div class="img-caption">
+            The Freenove 4WD Raspberry Pi Robot base.
+          </div>
+        </div>
+        <div class="img-wrapper">
+          <img
+            src="https://lh3.googleusercontent.com/d/1r-08KJ0VNTFYaSD-uPPhpLBscLznRDak"
+            alt="Robot components" />
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h2>3D Printing the Casing</h2>
+        </div>
+        <p>
+          Right now my robot just looks like what a phone would look like if it
+          were naked and all the components were revealed. So I decided to 3D
+          print a casing/shell for my robot to protect the Raspberry Pi from
+          damage and add a place for holding things. I 3D designed this casing
+          using Solidworks.
+        </p>
+        <div class="img-wrapper">
+          <img
+            src="https://lh3.googleusercontent.com/d/1hJ5KJEWSSn2nW_GLrU6V78s91_lJqyTd"
+            alt="Solidworks Design" />
+          <div class="img-caption">
+            Custom designed protective shell in Solidworks.
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h2>Installing Python</h2>
+        </div>
+        <p>
+          I believe any Python version 3.6 and above should work. Also, when
+          installing python you will need to install
+          <strong>pip</strong> alongside it to manage the packages required for
+          Roxy.
+        </p>
+        <div class="img-wrapper">
+          <img
+            src="https://lh3.googleusercontent.com/d/1RPW3HKeZi_VL9VS3q9FvCu5WnkYG5pau"
+            alt="Python Installation" />
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <h2>The Code Part 1: Logic & Functions</h2>
+        </div>
+        <p>
+          Alright now that I've gathered all my fellow
+          <strong>Philomaths</strong> let's start with the explanation of the
+          code. The name of the voice assistant is "Roxy".
+        </p>
+
+        <div class="code-header">
+          <span>Imports & Setup</span
+          ><button class="copy-btn" onclick="copyCode('code1')">
+            Copy Code
+          </button>
+        </div>
+        <pre id="code1">
+import winshell
+import subprocess
+import pyttsx3
+import json
+import random
+import operator
+import datetime
+import ctypes
+import time
+import wikipedia
+import newsapi
+import wolframalpha
+import smtplib
+import webbrowser
+import os
+import requests
+import selenium
+import pyjokes
+import feedparser
+import shutil
+from bs4 import BeautifulSoup
+from twilio.rest import Client
+from urllib.request import urlopen
+from clint.textui import progress
+import win32com.client as wincl
+import speech_recognition as sr
+
+# Setting up voice engine
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[1].id)
+
+# Chrome registration
+chrome_path = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
+webbrowser = webbrowser.get('chrome')</pre
+        >
+
+        <div class="code-header">
+          <span>Functions</span
+          ><button class="copy-btn" onclick="copyCode('code2')">
+            Copy Code
+          </button>
+        </div>
+        <pre id="code2">
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+def wishMe():
+    hour = int(datetime.datetime.now().hour)
+    if hour >= 0 and hour < 12:
+        speak("Good Morning Master")
+    elif hour >= 12 and hour < 18:
+        speak("Good Afternoon Master")
+    else:
+        speak("Good Evening Master")
+    speak("I am Roxy 1 point o. How can I help you?")
+
+def usrname():
+    speak("What is your name master")
+    global uname
+    uname = takeCommand()
+    speak("Welcome " + uname)
+    print("Welcome Master " + uname)
+
+def takeCommand():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+    try:
+        query = r.recognize_google(audio, language='en-ca')
+        print(f"User said: {query}\n")
+    except Exception as e:
+        return "None"
+    return query
+
+def sleeping():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        audio = r.listen(source)
+    while True:
+        print("Sleeping...")
+        x = takeSilentCommand().lower()
+        if "roxy" in x or "wake up" in x:
+            print("Waking up...")
+            break</pre
+        >
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">5</div>
+          <h2>The Code Part 2: Main Loop</h2>
+        </div>
+        <div class="alert">
+          <strong>Important:</strong> Use <code>Ctrl+F</code> to find "api" in
+          the code below and enter your personal keys for WolframAlpha,
+          OpenWeather, and NewsAPI.
+        </div>
+
+        <div class="code-header">
+          <span>Main Program</span
+          ><button class="copy-btn" onclick="copyCode('code3')">
+            Copy Code
+          </button>
+        </div>
+        <pre id="code3">
+if __name__ == '__main__':
+    def clear(): return os.system('cls')
+    clear()
+    sleeping()
+    wishMe()
+    usrname()
+
+    while True:
+        query = takeCommand().lower()
+
+        if 'wikipedia' in query:
+            speak('Searching Wikipedia...')
+            query = query.replace("wikipedia", "")
+            results = wikipedia.summary(query, sentences=3)
+            speak(results)
+
+        elif 'open youtube' in query:
+            webbrowser.open("youtube.com")
+
+        elif 'the time' in query:
+            strTime = time.strftime("%H:%M:%S")
+            speak(f"Master, the time is {strTime}")
+
+        elif "calculate" in query:
+            app_id = "YOUR_WOLFRAM_API_KEY"
+            client = wolframalpha.Client(app_id)
+            res = client.query(query)
+            answer = next(res.results).text
+            speak("The answer is " + answer)
+
+        elif 'exit' in query:
+            speak("Thanks for using me")
+            exit()</pre
+        >
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">6</div>
+          <h2>Using Roxy</h2>
+        </div>
+        <p>
+          After running <code>setup.py</code> to install all packages and adding
+          your API keys, you are ready! You can run Roxy by double-clicking
+          <code>roxy.py</code>. When you see the terminal screen below, Roxy is
+          on standby.
+        </p>
+
+        <div class="img-wrapper">
+          <img
+            src="https://lh3.googleusercontent.com/d/1RPW3HKeZi_VL9VS3q9FvCu5WnkYG5pau"
+            alt="Terminal UI" />
+        </div>
+
+        <p>
+          Use phrases like <strong>"Hey Roxy"</strong> or
+          <strong>"Wake up Roxy"</strong> to begin. You now have your very own
+          AI Voice Assistant robot!
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="social-links">
+        <a href="https://github.com/Sadrita404" target="_blank"
+          ><i class="fab fa-github"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/sadrita-neogi-2a7540376/"
+          target="_blank"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+      </div>
+      <br />
+      <a
+        href="https://leaders.hackclub.com/join/VLWQQT"
+        class="btn-join"
+        target="_blank"
+        >🚀 Join My Hack Club</a
+      >
+      <p style="margin-top: 40px; opacity: 0.6; font-size: 0.8rem">
+        &copy; Sadrita Neogi
+      </p>
+    </footer>
+
+    <script>
+      function copyCode(id) {
+        const code = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.querySelector(
+            `button[onclick="copyCode('${id}')"]`
+          );
+          const originalText = btn.innerText;
+          btn.innerText = "Copied!";
+          btn.style.background = "#4CAF50";
+          setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = "#fb8c00";
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
