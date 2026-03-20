@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make a Drone | MultiWii Guide</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #fb8c00;
+            --bg: #fdfdfd;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --accent: #e74c3c;
+            --secondary: #ecf0f1;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--card-bg);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        h1 { font-size: 3.2rem; margin-bottom: 15px; font-weight: 800; letter-spacing: -1px; }
+        
+        .author-badge { 
+            background: var(--secondary); 
+            padding: 10px 25px; 
+            border-radius: 50px; 
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            color: #444;
+            background: #fff8f1;
+            padding: 30px;
+            border-left: 6px solid var(--primary);
+            border-radius: 12px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 12px rgba(251, 140, 0, 0.05);
+        }
+
+        .step {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 45px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
+        }
+
+        .step-number {
+            color: var(--primary);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+
+        h2 { margin-top: 0; font-size: 2rem; border-bottom: 2px solid #fcfcfc; padding-bottom: 15px; }
+
+        /* Download Section Styling */
+        .download-box {
+            text-align: center;
+            padding: 40px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px dashed #ddd;
+            margin: 20px 0;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--text);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            background: #000;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .img-box {
+            width: 100%;
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+        }
+
+        .img-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .img-box img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .supplies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .supply-item {
+            background: #fff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid #efefef;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+        .supply-item::before { content: '•'; color: var(--primary); font-weight: bold; margin-right: 10px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th { background: #fafafa; font-size: 0.9rem; }
+
+        .note-box {
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            border-left: 5px solid;
+        }
+        .info { background: #e3f2fd; border-color: #2196f3; }
+        .danger { background: #fff5f5; border-color: var(--accent); }
+        .warning { background: #fffdf1; border-color: var(--primary); }
+
+        footer {
+            background: #ffffff;
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .social-links a {
+            color: #b2bec3;
+            font-size: 1.8rem;
+            margin: 0 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-links a:hover { color: var(--primary); transform: translateY(-5px); }
+
+        .btn-join {
+            display: inline-block;
+            background: #e11d48;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .img-grid { grid-template-columns: 1fr; }
+            .step { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>How to Make a Drone</h1>
+    <span class="author-badge">Project by Sadrita Neogi</span>
+</header>
+
+<div class="container">
+    <div class="intro-text">
+        Making this project was quite an adventure! After hours of tweaking and calibrating, I was finally able to make this work. I'm sharing my experience and mistakes here so you can build your own high-performance micro drone.
+    </div>
+
+    <section class="step">
+        <span class="step-number">Step 0</span>
+        <h2>Supplies & Parts</h2>
+        <div class="supplies-grid">
+            <div class="supply-item">4x Brushed 3.7V 720 Micro Motors</div>
+            <div class="supply-item">2 CW and 2 CCW Propellers</div>
+            <div class="supply-item">3.7v LiPo (300mAh - 500mAh)</div>
+            <div class="supply-item">3D Printed or Acrylic Frame</div>
+            <div class="supply-item">HM-10 Bluetooth Module</div>
+            <div class="supply-item">MPU6050 Sensor Module</div>
+            <div class="supply-item">MT3608 DC-DC Boost Converter</div>
+            <div class="supply-item">Atmega328p / Arduino Pro Mini</div>
+            <div class="supply-item">SI2302 Mosfets (x4)</div>
+            <div class="supply-item">SS12 Diodes (x4)</div>
+        </div>
+    </section>
+
+    <section class="step">
+        <span class="step-number">CAD Files</span>
+        <h2>3D Frame Model</h2>
+        <p>Download the high-fidelity GLB file for 3D printing or AR visualization.</p>
+        
+        <div class="download-box">
+            <a href="https://drive.google.com/uc?export=download&id=1oo7hfAC2tFghyPTjc9XG-940Jw6scE3E" class="btn-download">
+                <i class="fas fa-file-download"></i> Click here to download the GLB drone file
+            </a>
+            <p style="margin-top: 15px; font-size: 0.85rem; color: #666;">Format: GLB Binary (.glb) | Optimized for Web and Printing</p>
+        </div>
+        
+        <div class="note-box info">
+            <strong>Usage:</strong> You can upload this file to any 3D viewer, 3D printing slicer (like Cura), or use it in Blender for further modifications.
+        </div>
+    </section>
+
+    <section class="step">
+        <span class="step-number">Step 1</span>
+        <h2>The Schematic</h2>
+        <p>This schematic can drive up to 6 motors, but we only need 4 for this Quadcopter build.</p>
+        <div class="img-box">
+            <img src="https://drive.google.com/thumbnail?id=15wzBrpBakgGj1tOfM5zUolTDqZxm0eRM&sz=w1000" alt="Drone Schematic">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Motor Location</th>
+                    <th>Arduino Pin Mapping</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Front Left (M1)</td><td>Digital Pin D3</td></tr>
+                <tr><td>Front Right (M3)</td><td>Digital Pin D6</td></tr>
+                <tr><td>Rear Right (M4)</td><td>Digital Pin D9</td></tr>
+                <tr><td>Rear Left (M2)</td><td>Digital Pin D5</td></tr>
+            </tbody>
+        </table>
+        <div class="note-box danger">
+            <strong>Pro Tip:</strong> Using an <strong>Arduino Pro Mini</strong> is recommended if you aren't comfortable soldering SMD chips like the Atmega328p.
+        </div>
+    </section>
+
+    <section class="step">
+        <span class="step-number">Step 2</span>
+        <h2>PCB Design & Fabrication</h2>
+        <p>Because traces are thin, professional fabrication is better than DIY toner transfer.</p>
+        <div class="img-box">
+            <img src="https://drive.google.com/thumbnail?id=1XOZ48kwNmddJxRK79gQV87kjGv09nu7N&sz=w1000" alt="PCB Layout">
+        </div>
+    </section>
+
+    <section class="step">
+        <span class="step-number">Step 3</span>
+        <h2>Wiring & Power</h2>
+        <p>Ensure motor polarities are correct to avoid flips on takeoff.</p>
+        <div class="img-grid">
+            <div class="img-box">
+                <img src="https://drive.google.com/thumbnail?id=1x5lycUgHpmJWVP9khI3nfRFX1gfEbC8n&sz=w800" alt="Wiring Detail 1">
+            </div>
+            <div class="img-box">
+                <img src="https://drive.google.com/thumbnail?id=1GnbRJLEiCWN1p0J7Nv1M-HPIOzwjczE9&sz=w800" alt="Wiring Detail 2">
+            </div>
+        </div>
+        <div class="note-box warning">
+            <strong>Voltage Safety:</strong> Adjust the MT3608 potentiometer to 5V <em>before</em> connecting it to the Arduino.
+        </div>
+    </section>
+
+    <section class="step">
+        <span class="step-number">Step 5</span>
+        <h2>Calibration (MultiWiiConf)</h2>
+        <p>Connect via COM port and click CALIB_ACC while the drone is level.</p>
+        <div class="img-grid">
+            <div class="img-box">
+                <img src="https://drive.google.com/thumbnail?id=13weTsk58vqJXUZXhAXV8isg2gwFjSwiC&sz=w800" alt="Calibration Tool">
+            </div>
+            <div class="img-box">
+                <img src="https://drive.google.com/thumbnail?id=1JKhWi6ykg1Wv3Yq4EYpaFOA5VHcBumpY&sz=w800" alt="Calibration Graph">
+            </div>
+        </div>
+    </section>
+
+    <section class="step" id="final">
+        <span class="step-number">Step 6</span>
+        <h2>Final Result</h2>
+        <p>The build is complete! Lightweight and agile.</p>
+        <div class="img-box">
+            <img src="https://drive.google.com/thumbnail?id=1xclXOlVUtsM7yeq09ydPuuSJvjyJ4vts&sz=w1000" alt="Completed Drone">
+        </div>
+    </section>
+</div>
+
+<footer>
+    <div class="social-links">
+        <a href="https://github.com/Sadrita404" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/sadrita-neogi-2a7540376/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.instagram.com/sadrita_neogi/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <br>
+    <a href="https://leaders.hackclub.com/join/VLWQQT" class="btn-join" target="_blank">🚀 Join My Hack Club</a>
+    <p style="margin-top: 40px; opacity: 0.6; font-size: 0.8rem">&copy; Sadrita Neogi</p>
+</footer>
+
+<script>
+    // Console log for initialization
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("Drone Guide Loaded Successfully");
+    });
+</script>
+
+</body>
+</html>
