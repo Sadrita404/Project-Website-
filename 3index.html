@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cheap Arduino 3-Axis Pen Plotter | Instructables Style</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      :root {
+        --instructable-orange: #fb8c00;
+        --bg-gray: #f4f4f4;
+        --text-dark: #222;
+        --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background-color: var(--bg-gray);
+        color: var(--text-dark);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      /* Header */
+      nav {
+        background: #fff;
+        padding: 15px 5%;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-weight: 900;
+        font-size: 1.5rem;
+        color: var(--instructable-orange);
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      /* Project Container */
+      .project-header {
+        background: #fff;
+        padding: 40px 5%;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+      .author-info {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .main-container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 0 15px;
+      }
+
+      /* Hero Image */
+      .hero-img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 30px;
+      }
+
+      /* Content Sections */
+      .step-card {
+        background: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: var(--card-shadow);
+      }
+
+      h2 {
+        border-bottom: 2px solid var(--instructable-orange);
+        padding-bottom: 10px;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .step-num {
+        background: var(--instructable-orange);
+        color: #fff;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 1.2rem;
+      }
+
+      /* Table Style */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      th {
+        background: #eee;
+        text-align: left;
+        padding: 12px;
+      }
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+      }
+
+      /* Code Block Style */
+      .code-container {
+        position: relative;
+        background: #2d2d2d;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+
+      pre {
+        padding: 20px;
+        color: #ccc;
+        overflow-x: auto;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--instructable-orange);
+        color: white;
+        border: none;
+        padding: 5px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+      }
+
+      .copy-btn:hover {
+        opacity: 0.9;
+      }
+
+      .image-gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .gallery-item {
+        width: 100%;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+      }
+
+      /* Footer Custom Style */
+      footer {
+        background: #fff;
+        padding: 60px 20px;
+        text-align: center;
+        border-top: 1px solid #eee;
+        margin-top: 50px;
+      }
+
+      .social-links a {
+        color: #555;
+        font-size: 1.8rem;
+        margin: 0 15px;
+        transition: 0.3s;
+      }
+
+      .social-links a:hover {
+        color: var(--instructable-orange);
+      }
+
+      .btn-join {
+        display: inline-block;
+        background: #e11d48;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 20px;
+        box-shadow: 0 4px 10px rgba(225, 29, 72, 0.3);
+      }
+
+      @media (max-width: 700px) {
+        .image-gallery {
+          grid-template-columns: 1fr;
+        }
+        .step-card {
+          padding: 1;
+        }
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="logo"
+        >____________________________________________________________________________________________________________________________________________________________________________________________________________________________________</a
+      >
+    </nav>
+
+    <div class="project-header">
+      <h1>Cheap Arduino Controlled 3-Axis Pen Plotter</h1>
+      <p class="author-info">By Sadrita Neogi</p>
+    </div>
+
+    <div class="main-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=191J2a_BUylcjqhzMZ5tEbDYT8cTb6vSn&sz=w1200"
+        alt="Pen Plotter Project"
+        class="hero-img" />
+
+      <div class="step-card">
+        <h2>Introduction</h2>
+        <p>
+          The purpose of this project was to make a 3-axis pen plotter as
+          cheaply as I possibly could. Assuming you already have an Arduino, it
+          ended up costing around <strong>$30 to build</strong>.
+        </p>
+        <p>
+          <em
+            ><strong>Note:</strong> Stepper motors inside CD-ROMs are not very
+            strong. If the pen comes down too hard, it will stall the motors. It
+            won't hurt them, but it’s a good thing to keep in mind!</em
+          >
+        </p>
+      </div>
+
+      <div class="step-card">
+        <h2>
+          <div class="step-num">1</div>
+          Supplies & Parts List
+        </h2>
+        <p>
+          If you don't already have an Arduino, the total cost will be closer to
+          $60.00.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Part</th>
+              <th>Qty</th>
+              <th>Est. Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SN754410NE H-Bridge Driver</td>
+              <td>3</td>
+              <td>$29.25 (Total)</td>
+            </tr>
+            <tr>
+              <td>LM317 Voltage Regulator</td>
+              <td>3</td>
+              <td>~$1.95</td>
+            </tr>
+            <tr>
+              <td>10uF/25V Capacitor</td>
+              <td>3</td>
+              <td>~$0.45</td>
+            </tr>
+            <tr>
+              <td>Used CD-ROM Drives</td>
+              <td>3</td>
+              <td>~$5.00</td>
+            </tr>
+            <tr>
+              <td>Arduino Uno/Duemilanove</td>
+              <td>1</td>
+              <td>(Assumed Owned)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="step-card">
+        <h2>
+          <div class="step-num">2</div>
+          Mechanical Construction
+        </h2>
+        <p>
+          The build utilizes the stepper motors and sliding rails from three old
+          CD-ROM drives. Each drive handles one axis (X, Y, and Z).
+        </p>
+        <div class="image-gallery">
+          <img
+            src="https://drive.google.com/thumbnail?id=1fgmNo5vDTOkTXpiR71CEBEAGOWUb57D0&sz=w600"
+            class="gallery-item"
+            alt="Construction 1" />
+          <img
+            src="https://drive.google.com/thumbnail?id=1EHrrL8oYwu5ZJSbzMI9XG_8bi8h3ksyi&sz=w600"
+            class="gallery-item"
+            alt="Construction 2" />
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h2>
+          <div class="step-num">3</div>
+          Wiring & Schematic
+        </h2>
+        <p>
+          The schematic followed for wiring the SN754410NE H-Bridge drivers is
+          crucial. I used an LM317 5V regulator for each bridge, though if you
+          use a stable PC power supply, you can wire 5V directly.
+        </p>
+        <img
+          src="https://drive.google.com/thumbnail?id=1V6CFtpBgeUSr86rry-KkhZ91OyokcMba&sz=w800"
+          class="hero-img"
+          style="margin-top: 20px"
+          alt="Schematic Diagram" />
+      </div>
+
+      <div class="step-card">
+        <h2>
+          <div class="step-num">4</div>
+          The Arduino Code
+        </h2>
+        <p>
+          The program reads binary 0's & 1's stored in a word array. You can
+          draw different shapes by editing the <code>image</code> array.
+        </p>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+          <pre id="arduinoCode">
+// Cheap 3-Axis Pen Plotter Code
+#include &lt;Stepper.h&gt;
+
+#define STEPS 200
+
+Stepper stepperX(STEPS, 6, 7, 8, 9);     // x platform
+Stepper stepperY(STEPS, 2, 3, 4, 5);     // y platform
+Stepper stepperZ(STEPS, 10, 11, 12, 13); // z pen (Up/Down)
+
+int x_inc = 0;
+int y_inc = 0;
+int z_pos = 0;
+
+word image[16] = {
+  0b0000001110000000,
+  0b0010011111000100,
+  0b0010001110000100,
+  0b0010000100000100,
+  0b0011111111111100,
+  0b0000011111000000,
+  0b0000011111000000,
+  0b0000001110000000,
+  0b0000011111000000,
+  0b0000011111000000,
+  0b0000110001100000,
+  0b0001100000110000,
+  0b0001100000110000,
+  0b0011100000111000,
+  0b0011100000111000,
+  0b1111111111111111
+};
+
+void setup() {
+  stepperX.setSpeed(60); 
+  stepperY.setSpeed(60); 
+  stepperZ.setSpeed(60); 
+  delay(2000);
+}
+
+void loop() {
+    for(int row = 0; row < 16; row++) {
+      penUp();
+      stepperX.step(-x_inc);
+      x_inc = 0; 
+
+      for(int column = 0; column < 16; column++){
+        boolean pixel = bitRead(image[row],column);
+        if(pixel == 1){
+          penDown();
+          stepperX.step(10);
+          x_inc = x_inc + 10;
+          delay(15);
+        } else {
+          penUp();
+          stepperX.step(10);
+          x_inc = x_inc + 10;
+          delay(15);
+        }
+      }
+      penUp();
+      stepperY.step(10);
+      y_inc = y_inc + 10;
+      delay(15);
+    }
+  penUp();
+  stepperX.step(-x_inc);
+  stepperY.step(-y_inc);
+  while(1){}
+}
+
+void penDown() {
+  if (z_pos == 0){
+    stepperZ.step(83); 
+    delay(15);
+    z_pos = 83;
+  }
+}
+
+void penUp() {
+  if(z_pos == 83){
+    stepperZ.step(-83);
+    delay(15);
+    z_pos = 0;
+  }
+}</pre
+          >
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="social-links">
+        <a href="https://github.com/Sadrita404" target="_blank"
+          ><i class="fab fa-github"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/sadrita-neogi-2a7540376/"
+          target="_blank"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <a href="https://www.instagram.com/sadrita_neogi/" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+      </div>
+      <br />
+      <a
+        href="https://leaders.hackclub.com/join/VLWQQT"
+        class="btn-join"
+        target="_blank"
+        >🚀 Join My Hack Club</a
+      >
+      <p style="margin-top: 40px; opacity: 0.6; font-size: 0.8rem">
+        &copy; Sadrita Neogi
+      </p>
+    </footer>
+
+    <script>
+      function copyCode() {
+        const code = document.getElementById("arduinoCode").innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.querySelector(".copy-btn");
+          btn.innerText = "Copied!";
+          setTimeout(() => {
+            btn.innerText = "Copy Code";
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
